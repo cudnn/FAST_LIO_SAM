@@ -56,6 +56,8 @@ find_package(catkin REQUIRED COMPONENTS
   eigen_conversions
 )
 
+find_package(Boost REQUIRED COMPONENTS timer) #add by YS @/usr/bin/ld: 找不到 -lBoost::timer
+
 find_package(Eigen3 REQUIRED)
 find_package(PCL REQUIRED)
 find_package (GeographicLib REQUIRED)
