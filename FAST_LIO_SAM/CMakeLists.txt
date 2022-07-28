@@ -56,8 +56,11 @@ find_package(catkin REQUIRED COMPONENTS
   eigen_conversions
 )
 
+find_package(Boost REQUIRED COMPONENTS timer) #add by YS @/usr/bin/ld: 找不到 -lBoost::timer
+
 find_package(Eigen3 REQUIRED)
 find_package(PCL REQUIRED)
+find_package (GeographicLib REQUIRED)
 
 find_package( GTSAMCMakeTools )
 find_package(GTSAM REQUIRED QUIET)
@@ -70,6 +73,7 @@ include_directories(
   ${PCL_INCLUDE_DIRS}
   ${PYTHON_INCLUDE_DIRS}
   ${GTSAM_INCLUDE_DIR}
+  ${GeographicLib_INCLUDE_DIRS}
   include)
 
   # link directories
@@ -107,5 +111,5 @@ catkin_package(
 add_library(ikd_Tree include/ikd-Tree/ikd_Tree.cpp)
 add_library(preprocess  src/preprocess.cpp)
 add_executable(fastlio_sam_mapping src/laserMapping.cpp)
-target_link_libraries(fastlio_sam_mapping ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PYTHON_LIBRARIES} ikd_Tree preprocess gtsam) 
+target_link_libraries(fastlio_sam_mapping ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PYTHON_LIBRARIES}  ${GeographicLib_LIBRARIES} ikd_Tree preprocess gtsam) 
 target_include_directories(fastlio_sam_mapping PRIVATE ${PYTHON_INCLUDE_DIRS})
